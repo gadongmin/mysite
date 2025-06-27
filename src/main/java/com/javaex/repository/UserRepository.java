@@ -8,20 +8,19 @@ import com.javaex.vo.UserVO;
 
 @Repository
 public class UserRepository {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	public void userSelectOne() {
-		
-		
+
 	}
-	
+
 	public int userInsert(UserVO userVO) {
 		System.out.println("UserRepository.userInsert()");
-		
-		int count = sqlSession.insert("mysite.insert",userVO);
-		
+
+		int count = sqlSession.insert("mysite.insert", userVO);
+
 		return count;
 	}
 

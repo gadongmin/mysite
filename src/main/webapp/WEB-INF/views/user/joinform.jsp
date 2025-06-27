@@ -5,11 +5,11 @@
 
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>MySite</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
+	<meta charset="UTF-8">
+	<title>MySite</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
 </head>
 
 <body>

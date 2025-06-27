@@ -11,26 +11,26 @@ import com.javaex.vo.UserVO;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserService serService;
-	
-	@RequestMapping(value = "/user/joinform", method = {RequestMethod.GET, RequestMethod.POST})
+
+	@RequestMapping(value = "/user/joinform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinForm(@ModelAttribute UserVO userVO) {
 		System.out.println("UserController.joinForm()");
 		System.out.println(userVO);
-		
+
 		serService.exeJoin(userVO);
-		
+
 		return "redirect:/user/joinok";
-		
+
 	}
 
-	@RequestMapping(value = "/user/joinok", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/user/joinok", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinOk() {
 		System.out.println("UserController.joinok()");
-		
+
 		return "user/joinok";
-		
+
 	}
 }
