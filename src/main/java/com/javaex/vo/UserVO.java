@@ -10,11 +10,8 @@ public class UserVO {
 	private String gender;
 	
 	//생성자
-	public UserVO() {
-		super();
-	}
+	public UserVO() {}
 	public UserVO(int no, String id, String password, String name, String gender) {
-		super();
 		this.no = no;
 		this.id = id;
 		this.password = password;
