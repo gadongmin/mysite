@@ -3,11 +3,12 @@
 
 <mapper namespace="mysite">
 
+<!--user저장(회원가입)-->
 	<insert id="insert" parameterType="com.javaex.vo.UserVO">
 				<![CDATA[
 					insert into users
-					values(null,#{id},#{password},#{name},#{gender})
+					values(null, #{id}, #{password}, #{name}, #{gender})
 				]]>
 	</insert>
-	
+
 </mapper>

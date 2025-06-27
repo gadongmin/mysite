@@ -20,7 +20,6 @@ public class UserVO {
 	}
 	
 	//메소드-gs
-	
 	public int getNo() {
 		return no;
 	}
