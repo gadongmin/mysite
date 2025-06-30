@@ -14,37 +14,9 @@
 
 <body>
 	<div class="wrap">
-		<header class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">황일영 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-
-			<ul class="clearfix">
-				<li><a class="btn btn-white btn-sm" href="">로그인</a></li>
-				<li><a class="btn btn-white btn-sm" href="">회원가입</a></li>
-			</ul>
-		</header>
-
-		<nav>
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</nav>
+		<!--header + nav-->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<!--header + nav-->
 
 		<div class="content2 clearfix">
 			<aside>
@@ -68,19 +40,33 @@
 				</div>
 
 				<div id="user-editform">
-
-					<form class="form-box" action="" method="">
+					<!--파라미터 구현-->
+					<form class="form-box" action="${pageContext.request.contextPath}/user/edit" method="get">
 						<div class="info-row">
-							<span class="info-title">아이디</span> <span id="txt-id">aaaa</span>
+							<span class="info-title">아이디</span> <span id="txt-id">${requestScope.userVO.id}</span>
 						</div>
 						<div class="info-row">
-							<label class="info-title" for="txt-pwd">패스워드</label> <input id="txt-pwd" type="password" name="" value="">
+							<label class="info-title" for="txt-pwd">패스워드</label> <input id="txt-pwd" type="password" name="password" value="${requestScope.userVO.password}">
 						</div>
 						<div class="info-row">
-							<label class="info-title" for="txt-name">이름</label> <input id="txt-name" type="text" name="" value="">
+							<label class="info-title" for="txt-name">이름</label> <input id="txt-name" type="text" name="name" value="${requestScope.userVO.name}">
 						</div>
 						<div class="info-row">
-							<span class="info-title">성별</span> <label>남</label> <input type="radio"> <label>여</label> <input type="radio">
+							<span class="info-title">성별</span>
+							<label>남</label>
+							<c:if test="${requestScope.userVO.gender == 'male'}">
+							<input type="radio" name="gender" value="male" checked>
+							</c:if>
+							<c:if test="${requestScope.userVO.gender != 'male'}">
+							<input type="radio" name="gender" value="male" >
+							</c:if>
+							<label>여</label>
+							<c:if test="${requestScope.userVO.gender == 'female'}">
+							<input type="radio" name="gender" value="female" checked>
+							</c:if>
+							<c:if test="${requestScope.userVO.gender != 'female'}">
+							<input type="radio" name="gender" value="female" >					
+							</c:if>		
 						</div>
 						<div class="btn-group">
 							<button id="btn-edit" class="btn btn-blue btn-lg" type="submit">회원정보수정</button>
@@ -93,9 +79,9 @@
 			</main>
 		</div>
 
-		<footer>
-			<p>Copyright ⓒ 2025 황일영. All right reserved</p>
-		</footer>
+		<!--footer-->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<!--footer-->
 
 	</div>
 

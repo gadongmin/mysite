@@ -1,39 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
         <title>MySite</title>
-        <link rel="stylesheet" href="../../assets/css/reset.css">
-        <link rel="stylesheet" href="../../assets/css/mysite.css">
-        <link rel="stylesheet" href="../../assets/css/guestbook.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/guestbook.css">
     </head>
 
 
 	<body>
 		  <div class="wrap">
-            <header class="clearfix">
-                <h1><a href="">MySite</a></h1>
-              
-                <!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">황일영 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-                 	
-               <ul class="clearfix">
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">로그인</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">회원가입</a>
-                    </li>
-                </ul>
-            </header>
+		<!-- 헤더 -->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<!-- /헤더 -->
 
  			<nav>
                 <ul class="clearfix">
@@ -65,7 +48,7 @@
                     </div>
 
 					<div id="guestbook-removeform">
-						<form class="form-box" action="" method="">
+						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/remove" method="get">
 							<table>
 								<colgroup>
 									<col style="width: 10%;">
@@ -78,12 +61,13 @@
 										<th>비밀번호</th>
 										<td>
 											<input type="password" name="password" value="">
+											<input type="hidden" name="no" value="${param.no}">
 										</td>
 										<td class="text-left">
 											<button class="btn btn-blue btn-input" type="submit">삭제</button>
 										</td>
 										<td class="txt-center">
-											<a id="btn-main" class="btn btn-gray btn-input" href="">메인으로 돌아가기</a>
+											<a id="btn-main" class="btn btn-gray btn-input" href="${pageContext.request.contextPath}/guestbook/addlist">메인으로 돌아가기</a>
 										</td>
 									</tr>
 								</tbody>
@@ -95,11 +79,7 @@
 				   </main>
             </div>
             
-            <footer>
-                <p>
-                    Copyright ⓒ 2025 황일영. All right reserved  
-                </p>
-            </footer>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
         </div>
      

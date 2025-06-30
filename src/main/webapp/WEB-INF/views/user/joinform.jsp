@@ -14,37 +14,9 @@
 
 <body>
 	<div class="wrap">
-		<header class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">황일영 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-
-			<ul class="clearfix">
-				<li><a class="btn btn-white btn-sm" href="">로그인</a></li>
-				<li><a class="btn btn-white btn-sm" href="">회원가입</a></li>
-			</ul>
-		</header>
-
-		<nav>
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</nav>
+		<!--header + nav-->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<!--header + nav-->
 
 		<div class="content2 clearfix">
 			<aside>
@@ -69,19 +41,23 @@
 
 				<div id="user-joinform">
 
-					<form class="form-box" action="" method="">
+					<form class="form-box" action="http://localhost:8888/user/join" method="get">
 						<div class="info-row">
-							<label class="info-title" for="txt-idcheck">아이디</label> <input id="txt-idcheck" type="text" name="" value="">
+							<label class="info-title" for="txt-idcheck">아이디</label> <input id="txt-idcheck" type="text" name="id" value="">
 							<button id="" class="btn btn-gray btn-input" type="button">중복체크</button>
 						</div>
 						<div class="info-row">
-							<label class="info-title" for="txt-pwd">패스워드</label> <input id="txt-pwd" type="password" name="" value="">
+							<label class="info-title" for="txt-pwd">패스워드</label> <input id="txt-pwd" type="password" name="password" value="">
 						</div>
 						<div class="info-row">
-							<label class="info-title" for="txt-name">이름</label> <input id="txt-name" type="text" name="" value="">
+							<label class="info-title" for="txt-name">이름</label> <input id="txt-name" type="text" name="name" value="">
 						</div>
 						<div class="info-row">
-							<span class="info-title">성별</span> <label>남</label> <input type="radio" name="gender" > <label>여</label> <input type="radio" name="gender" >
+							<span class="info-title">성별</span>
+							<label>남</label>
+							<input type="radio" name="gender" value="">
+							<label>여</label>
+							<input type="radio" name="gender" value="">
 						</div>
 						<div class="info-row">
 							<span class="info-title">약관동의</span> <input type="checkbox" name="" value="">
@@ -98,9 +74,9 @@
 			</main>
 		</div>
 
-		<footer>
-			<p>Copyright ⓒ 2025 황일영. All right reserved</p>
-		</footer>
+		<!--footer-->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<!--footer-->
 
 	</div>
 
