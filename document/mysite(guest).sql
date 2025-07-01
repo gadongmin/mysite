@@ -35,3 +35,4 @@ value(null, '정우성', 1, '첫번째 방명록', now())
 insert into guestbook
 value(null, '이효리', 1, '두번째 방명록', now())
 ;
+

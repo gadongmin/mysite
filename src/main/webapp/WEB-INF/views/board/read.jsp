@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
@@ -26,8 +24,9 @@
                     </ul>
                 </aside>
 
-                <main>
-                    <div class="main-head clearfix">
+
+				<main>
+					<div class="main-head clearfix">
                         <h3>일반게시판</h3>
                         <ol class="clearfix">
                             <li>홈</li>
@@ -35,36 +34,50 @@
                             <li>일반게시판</li>
                         </ol>
                     </div>
-                    
-                    <div id="board-writeform">
-                
-                        <form class="form-box" action="${pageContext.request.contextPath}/board/write" method="get">
-							<!-- 제목 -->
-							<div class="info-row">
-								<label class="info-title" for="txt-title">제&nbsp;&nbsp;&nbsp;목</label>
-								<input type="text" id="txt-title" name="title" value="" placeholder="제목을 입력해 주세요">
-							</div>
+
+	
+					<div id="board-read">
+
+						<!-- 작성자 -->
+						<div class="info-row">
+							<span class="info-title">작성자</span>
+							<span>${requestScope.boardVO.name}</span>
+						</div>
 						
-							<!-- 내용 -->
-							<div class="info-row">
-								<textarea name="content" value="" id="txt-content"></textarea>
-							</div>
-							
-                            <div class="btn-box">
-							    <a class="btn btn-gray btn-md" href="">목록</a>
-							    <button class="btn btn-blue btn-md" type="submit" >등록</button>
-							</div>
-						</form>
-						<!-- //form -->
+						<!-- 조회수 -->
+						<div class="info-row">
+							<span class="info-title">조회수</span>
+							<span>${requestScope.boardVO.hit}</span>
+						</div>
+						
+						<!-- 작성일 -->
+						<div class="info-row">
+							<span class="info-title">작성일</span>
+							<span>${requestScope.boardVO.regDate}</span>
+						</div>
+						
+						<!-- 제목 -->
+						<div class="info-row">
+						<span class="info-title">제 목</span> <span>${requestScope.boardVO.title}</span>
+						</div>
+					
+						<!-- 내용 -->
+						<div class="info-row">
+							<div class="outline" >${requestScope.boardVO.content}</div>
+						</div>
+						
+						<div class="btn-box">
+							<a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list">목록</a>
+							<a class="btn btn-blue btn-md" href="${pageContext.request.contextPath}/board/editform?no=${requestScope.boardVO.no}">수정</a>
+						</div>
+						
+					</div>
 
-                    </div>
-
-                    
-                </main>
+				 </main>
             </div>
             
 		<!--footer-->
-		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!--footer-->
 
         </div>
