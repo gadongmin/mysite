@@ -51,7 +51,7 @@
 							</div>
 							
                             <div class="btn-box">
-							    <a class="btn btn-gray btn-md" href="">목록</a>
+							    <a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list3">목록</a>
 							    <button class="btn btn-blue btn-md" type="submit" >등록</button>
 							</div>
 						</form>

@@ -32,15 +32,49 @@
 			where  	 u.no = b.user_no
 			order by b.no asc
 			limit #{startRowNo}, #{listCnt}
-			
 		]]>
 	</select>
+	
+<!-- 전체리스트3 (페이징, 검색) -->	
+	<select id="selectList3" parameterType="map" resultType="com.javaex.vo.BoardVO">
+		<![CDATA[
+			select   b.no
+					,b.user_no as userNo
+		      	    ,b.title
+				    ,b.content
+				    ,b.hit
+			        ,date_format(b.reg_date,'%Y-%m-%d') as regDate
+			        ,u.no 
+			        ,u.name
+			from 	 users u, board b
+			where  	 u.no = b.user_no
+		]]>			
+		
+			<if test="kwd != null">
+				and title like concat('%',#{kwd},'%')		
+			</if>
+		
+		<![CDATA[	
+			order by b.no asc
+			limit #{startRowNo}, #{listCnt}
+		]]>		
+	</select>
 
-<!-- 전체 글갯수 -->
+<!-- 전체 글갯수(페이징) -->
 	<select id="selectTotalCount" resultType="int">
 		<![CDATA[
 			select count(*) count
 			from board
+		]]>
+	</select>
+	
+<!-- 전체 글갯수(페이징, 검색) -->
+	<select id="selectTotalCountByKwd" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from board
+			where  	 title 	
+			like 	 concat('%',#{kwd},'%')
 		]]>
 	</select>
 	
@@ -81,7 +115,7 @@
 	</update>
 
 <!-- 게시판 삭제 -->	
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="com.javaex.vo.BoardVO">
 			<![CDATA[
 				delete from board
 				where no = #{no}

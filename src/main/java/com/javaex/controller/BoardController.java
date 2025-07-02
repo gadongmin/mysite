@@ -34,7 +34,7 @@ public class BoardController {
 
 		model.addAttribute("boardList", boardList);
 
-		return "/board/list";
+		return "/board/list3";
 	}
 
 	// - 게시판 전체리스트2(페이징)
@@ -49,6 +49,22 @@ public class BoardController {
 
 		return "/board/list2";
 	}
+	
+	// - 게시판 전체리스트3(페이징, 검색)
+	@RequestMapping(value = "/list3", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list3(@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
+						@RequestParam(value = "kwd", required = false, defaultValue = "") String kwd,
+						Model model) {
+		System.out.println("BoardController.list3()");
+
+		Map<String, Object> pMap = boardService.exeList3(crtPage, kwd);
+		
+		model.addAttribute("pMap", pMap);
+		
+		return "/board/list3";
+	}
+	
+	
 
 	// - 게시판 등록폼
 	@RequestMapping(value = "/writeform", method = { RequestMethod.GET, RequestMethod.POST })
@@ -75,7 +91,7 @@ public class BoardController {
 
 			boardService.exeWrite(boardVO);
 
-			return "redirect:/board/list";
+			return "redirect:/board/list3";
 		}
 	}
 
@@ -109,29 +125,40 @@ public class BoardController {
 		System.out.println("BoardController.edit()");
 		
 		UserVO authUser = (UserVO) session.getAttribute("authUser");
+		
 		if (authUser == null) {
 			return "redirect:/user/loginform";
+			
 		} else {
 		int no = authUser.getNo();
 		
 		boardVO.setUserNo(no);
 		
 		boardService.exeEdit(boardVO);
-		System.out.println(boardVO);
 
-		return "redirect:/board/list";
+		return "redirect:/board/list3";
 		}
 	}
 
 	// - 게시판 삭제
 	@RequestMapping(value = "/remove", method = { RequestMethod.GET, RequestMethod.POST })
-	public String remove(@RequestParam(value = "no") int no) {
+	public String remove(@ModelAttribute BoardVO boardVO, HttpSession session) {
 		System.out.println("BoardController.remove()");
 
-		boardService.exeRomove(no);
-		System.out.println(no);
-
-		return "redirect:/board/list";
+		UserVO authUser = (UserVO) session.getAttribute("authUser");
+		
+		if (authUser == null) {
+			return "redirect:/user/loginform";
+			
+		} else {
+		int no = authUser.getNo();
+		
+		boardVO.setUserNo(no);
+		
+		boardService.exeRemove(boardVO);
+		System.out.println(boardVO);
+		return "redirect:/board/list3";
+		}
 	}
 
 }

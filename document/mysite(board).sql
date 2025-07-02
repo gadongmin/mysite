@@ -43,21 +43,29 @@ select  b.no
 from 	users u, board b
 where  	u.no = b.user_no
 order by b.no asc
-limit 10, 10
+limit 0, 10
 ;
 
 -- 전체 글 갯수
-select count(*) count
-from board
+select 	count(*) count
+from 	board
+where  	title
+like 	'%12%'
 ;
 
--- 게시판 등록
-insert into board
-value(null, 1, '6번째 게시물 제목', '5번째 게시물 내용', 0, now())
-;
-
-insert into board
-value(null, 2, '7번째 게시물 제목', '4번째 게시물 내용', 0, now())
+-- 게시판 검색
+select   b.no
+	    ,b.title
+	    ,b.content
+	    ,b.hit
+	    ,date_format(b.reg_date,'%Y-%m %d') regDate
+	    ,u.no
+        ,u.name
+from 	 board
+where  	 u.no = b.user_no
+and		 title	like '%12%'
+order by b.no asc
+limit 	 0,10
 ;
 
 -- 게시판 수정

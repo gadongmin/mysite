@@ -109,6 +109,76 @@ public class BoardService {
 		
 		return pMap;
 	}
+
+	// - 게시판 전체리스트3(페이징, 검색)
+	public Map<String, Object> exeList3(int crtPage, String kwd) {
+		System.out.println("BoardService.exelist3()");
+
+		
+		System.out.println(crtPage);
+		System.out.println(kwd);
+		
+		//////////////////////////////////////////////////////////////
+		//// 리스트 가져오기
+		//////////////////////////////////////////////////////////////
+		// - 한페이지의 출력갯수
+		int listCnt = 10;
+		
+		// 시작번호
+		int startRowNo = (crtPage-1)*listCnt;
+		
+		// 두개의 데이터를 묶는다, MAP사용
+		Map<String, Object> limitMap = new HashMap<String, Object>();
+		limitMap.put("startRowNo", startRowNo); // 시작페이지
+		limitMap.put("listCnt", listCnt);		// 출력되는 페이지 수
+		limitMap.put("kwd", kwd);				// 키워드
+		
+		// Repositoryd에게 보낸다
+		List<BoardVO> boardList = boardRepository.boardSelectList3(limitMap);
+
+		//////////////////////////////////////////////////////////////
+		//// 페이징 버튼
+		//////////////////////////////////////////////////////////////
+		// 페이지 버튼 갯수
+		int pageBtnCount = 5;
+
+		// 마지막 버튼 번호
+		int endPageBtnNo = ((int)Math.ceil(crtPage/((double)pageBtnCount)))*pageBtnCount; 
+
+		// 시작 버튼 번호
+		int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
+		
+		// next 버튼 출력여부 결정
+		// 전체 글 갯수
+		int totalCount = boardRepository.selectTotalCountByKwd(kwd);
+		
+		boolean next = false;
+		if(listCnt * endPageBtnNo < totalCount) {
+			next = true;
+		}else { // 마지막 버튼 번호를 다시 계산해야한다.
+			//185 일때 19page까지 출력 
+			endPageBtnNo = (int)Math.ceil(totalCount/(double)listCnt);
+		}
+		
+		// prev 버튼 출력여부 결정
+		boolean prev = false;
+		if(startPageBtnNo != 1) {
+			prev = true;
+		}
+		
+		// 모두 묶어서 컨트롤러에 리턴해준다.
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("boardList", boardList); 			// 리스트
+
+		pMap.put("prev", prev);						// 이전버튼 유무
+		pMap.put("next", next);						// 다음버튼 유무
+		pMap.put("startPageBtnNo", startPageBtnNo);	// 시작번호
+		pMap.put("endPageBtnNo", endPageBtnNo);		// 마지막 번호
+		
+		return pMap;
+	}
+	
+	
 	
 	// - 게시판 등록
 	public int exeWrite(BoardVO boardVO) {
@@ -131,20 +201,18 @@ public class BoardService {
 	// - 게시판 수정
 	public int exeEdit(BoardVO boardVO) {
 		System.out.println("BoardService.exeEdit()");
-		
+
 		int count = boardRepository.boardUpdate(boardVO);
-		
+
 		return count;
 	}
-	
 
 	// - 게시판 삭제
-	public int exeRomove(int no) {
+	public int exeRemove(BoardVO boardVO) {
 		System.out.println("BoardService.exeRomove()");
-		
-		int count = boardRepository.boardDelete(no);
-		System.out.println(count);
-		
+
+		int count = boardRepository.boardDelete(boardVO);
+
 		return count;
 	}
 
