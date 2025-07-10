@@ -22,6 +22,24 @@ public class UserService {
 		return count;
 
 	}
+	
+	// - 아이디 중복확인
+	public boolean  exeIdcheck(String id) {
+		System.out.println("UserService.exeIdcheck()");
+		
+		UserVO userVO =  userRepository.userSelectOneById(id);
+		System.out.println(userVO);
+		
+		if(userVO == null) {
+			// 사용할 수 있는 아이디
+			return true;
+	
+		}else {
+			// 사용할 수 없는 아이디
+			return false;
+		}
+	}
+	
 	// - 로그인(user정보 가져오기, idpw)
 	public UserVO exeLogin(UserVO userVO) {
 		System.out.println("UserService.exeLogin()");

@@ -32,6 +32,12 @@ select  no
 from 	board
 ;
 
+select  *
+from 	users u, board b
+where  	u.no = b.user_no
+order by b.no asc
+;
+
 -- 전체리스트
 select  b.no
 		,b.title

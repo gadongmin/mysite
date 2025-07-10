@@ -5,11 +5,15 @@
 
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<title>MySite</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
+<meta charset="UTF-8">
+<title>MySite</title>
+<!-- css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
+
+<!-- js -->
+<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>
 </head>
 
 <body>
@@ -23,7 +27,7 @@
 				<h2>유저</h2>
 				<ul>
 					<li><a href="">회원정보</a></li>
-					<li><a href="">로그인</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/loginform">로그인</a></li>
 					<li><a href="">회원가입</a></li>
 				</ul>
 			</aside>
@@ -44,8 +48,10 @@
 					<form class="form-box" action="http://localhost:8888/user/join" method="get">
 						<div class="info-row">
 							<label class="info-title" for="txt-idcheck">아이디</label> <input id="txt-idcheck" type="text" name="id" value="">
-							<button id="" class="btn btn-gray btn-input" type="button">중복체크</button>
+							<button id="btnCheck" class="btn btn-gray btn-input" type="button">중복체크</button>
+							<p id="checkMsg"></p>
 						</div>
+
 						<div class="info-row">
 							<label class="info-title" for="txt-pwd">패스워드</label> <input id="txt-pwd" type="password" name="password" value="">
 						</div>
@@ -53,11 +59,20 @@
 							<label class="info-title" for="txt-name">이름</label> <input id="txt-name" type="text" name="name" value="">
 						</div>
 						<div class="info-row">
-							<span class="info-title">성별</span>
-							<label>남</label>
-							<input type="radio" name="gender" value="">
+							<span class="info-title">성별</span> <label>남</label>
+							<c:if test="${requestScope.userVO.gender == 'male'}">
+								<input type="radio" name="gender" value="male" checked>
+							</c:if>
+							<c:if test="${requestScope.userVO.gender != 'male'}">
+								<input type="radio" name="gender" value="male">
+							</c:if>
 							<label>여</label>
-							<input type="radio" name="gender" value="">
+							<c:if test="${requestScope.userVO.gender == 'female'}">
+								<input type="radio" name="gender" value="female" checked>
+							</c:if>
+							<c:if test="${requestScope.userVO.gender != 'female'}">
+								<input type="radio" name="gender" value="female">
+							</c:if>
 						</div>
 						<div class="info-row">
 							<span class="info-title">약관동의</span> <input type="checkbox" name="" value="">
@@ -80,5 +95,49 @@
 
 	</div>
 
+	<!-- ------------------------------------------------------------ -->
+	<script>
+		$(document).ready(function() {
+			console.log('돔트리 완료');
+
+			$("#btnCheck").on("click", function(event) {
+				console.log("아이디 체크버튼");
+
+				let id = $("#txt-idcheck").val();
+				console.log(id);
+
+				// 서버 통신
+				$.ajax({
+					// 보낼때 옵션
+					url : "${pageContext.request.contextPath}/user/idcheck"
+					,type : "post"
+					// ,contentType : "application/json"
+					,data : {id : id}
+
+					// 받을때 옵션
+					,dataType : "json"
+					,success : function(result) {
+						/*성공시 처리해야될 코드 작성*/
+						console.log(result.isUse);
+
+						if (result.isUse == true) {
+							$("#checkMsg").text("사용가능 아이디입니다.");
+							$("#checkMsg").css("color", "#0000ff");
+							$("#checkMsg").css("font-weight", "bold");
+
+						} else {
+							$("#checkMsg").text("사용중인 아이디입니다.");
+							$("#checkMsg").css("color", "#ff0000");
+							$("#checkMsg").css("font-weight", "bold");
+						}
+					}
+					,error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+
+			});
+		});
+	</script>
 </body>
 </html>

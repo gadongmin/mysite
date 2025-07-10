@@ -24,7 +24,16 @@ public class UserRepository {
 
 		return count;
 	}
-	
+
+	// - 아이디 중복확인
+	public UserVO userSelectOneById(String id) {
+		System.out.println("UserRepository.userSelectOneById()");
+		
+		UserVO userVO =  sqlSession.selectOne("user.selectOneById",id);
+
+		return userVO;
+	}
+	 
 	// - 로그인
 	public UserVO userSelectOneByIdPw(UserVO userVO) {
 		System.out.println("UserRepository.userSelectOneByIdPw()");

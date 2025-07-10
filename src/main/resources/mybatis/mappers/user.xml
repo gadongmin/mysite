@@ -11,6 +11,18 @@
 		]]>
 	</insert>
 
+	<!--아이디 중복확인 -->	
+	<select id="selectOneById" parameterType="String" resultType="com.javaex.vo.UserVO">
+			<![CDATA[
+			select 	no
+				   ,id
+			       ,name
+			       ,gender
+			from 	users
+			where   id = #{id}
+		]]>
+	</select>
+
 	<!--로그인 -->
 	<select id="selectOneByIdPw" parameterType="com.javaex.vo.UserVO" resultType="com.javaex.vo.UserVO">
 		<![CDATA[

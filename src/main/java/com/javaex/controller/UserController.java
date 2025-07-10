@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVO;
@@ -49,6 +51,24 @@ public class UserController {
 			return "user/joinform";
 		}
 
+	}
+	
+	// - 회원가입 아이디 중복체크 → 데이터만 응답
+	@ResponseBody
+	@RequestMapping(value = "/user/idcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public String idcheck(@RequestParam(value="id") String id, Model model) {
+		System.out.println("UserController.idcheck()");
+		
+		boolean isUse = userService.exeIdcheck(id);
+		System.out.println(isUse);
+		
+		// jsp에 전달할때(기존방식, model에 담으면 jsp를 꺼내서 공식응답문서를 만든다.)
+		// model.addAttribute("isUse", isUse);
+		
+		// json형식으로 데이터 전송(@ResponseBody 상단에 붙이고 return으로 보낸다.)
+		String result = "{\"isUse\": "+isUse+"}";
+		
+		return result;
 	}
 
 	// - 회원가입 완료
