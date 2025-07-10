@@ -31,7 +31,7 @@ public class GuestbookController {
 	
 	@RequestMapping(value = "/guestbook/add", method = {RequestMethod.GET, RequestMethod.POST})
 	public String add(@ModelAttribute GuestVO guestVO) {
-		System.out.println("guestbookService.add()");
+		System.out.println("GuestbookController.add()");
 		System.out.println(guestVO);
 		
 		guestbookService.exeAdd(guestVO);
@@ -41,7 +41,7 @@ public class GuestbookController {
 
 	@RequestMapping(value = "/guestbook/removeform", method = {RequestMethod.GET, RequestMethod.POST})
 	public String removeForm() {
-		System.out.println("guestbookService.removeForm()");
+		System.out.println("GuestbookController.removeForm()");
 		
 		
 		return "/guestbook/removeform";
@@ -49,10 +49,11 @@ public class GuestbookController {
 
 	@RequestMapping(value = "/guestbook/remove", method = {RequestMethod.GET, RequestMethod.POST})
 	public String remove(@ModelAttribute GuestVO guestVO) {
-		System.out.println("guestbookService.remove()");
+		System.out.println("GuestbookController.remove()");
 		
 		guestbookService.exeRemove(guestVO);
 		
 		return "redirect:/guestbook/addlist";
 	}
+	
 }

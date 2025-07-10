@@ -17,7 +17,6 @@ public class GuestbookRepository {
 		System.out.println("guestbookRepository.selectList()");
 
 		List<GuestVO> gList = sqlSession.selectList("guest.selectList");
-		System.out.println(gList);
 		
 		return gList;
 		

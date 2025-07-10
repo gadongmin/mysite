@@ -22,6 +22,7 @@ create table guestbook(
 -- 전체조회
 select 	no
 	   ,name
+       ,password
        ,content
        ,date_format(reg_date,'%Y-%m-%d') regDate
 from 	guestbook
