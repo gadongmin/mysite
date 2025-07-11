@@ -26,6 +26,12 @@ select 	no
        ,content
        ,date_format(reg_date,'%Y-%m-%d') regDate
 from 	guestbook
+where no = 1
+;
+
+-- 전체조회
+select 	*
+from 	guestbook
 ;
 
 -- 방명록 등록
@@ -37,3 +43,7 @@ insert into guestbook
 value(null, '이효리', 1, '두번째 방명록', now())
 ;
 
+-- 게시판 삭제
+delete from guestbook
+where no = 16
+;

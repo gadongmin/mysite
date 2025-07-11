@@ -31,6 +31,18 @@ public class GuestbookService {
 		
 	}
 	
+	public GuestVO exeAddKey(GuestVO guestVO) {
+		System.out.println("GuestbookService.exeAddKey()");
+		
+		int no = guestbookRepository.insertKeyGuest(guestVO);
+		
+		// 추가된 no로 방명록 글 가져오기
+		GuestVO gVO = guestbookRepository.selectOne(guestVO.getNo());
+		
+		return gVO;
+		
+	}
+	
 	public int exeRemove(GuestVO guestVO) {
 		System.out.println("GuestbookService.exeRemove()");
 		
