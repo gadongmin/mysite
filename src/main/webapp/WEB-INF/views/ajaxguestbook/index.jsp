@@ -22,14 +22,9 @@
 		<!-- /header -->
 
 		<div class="content2 clearfix">
-			<aside>
-				<h2>방명록</h2>
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/guestbook/list">일반방명록</a></li>
-					<li><a href="${pageContext.request.contextPath}/guestbook/ajaxguestbook">ajax방명록</a></li>
-				</ul>
-			</aside>
-
+		<!-- aside 방명록 -->
+		<c:import url="/WEB-INF/views/include/asideGuestbook.jsp"></c:import>
+		<!-- aside 방명록 -->		
 			<main>
 				<div class="main-head clearfix">
 					<h3>일반방명록</h3>
@@ -143,24 +138,33 @@
 			// 서버저장
 			$.ajax({
 					// 요청
-					url : "${pageContext.request.contextPath}/api/guestbook/add"		
+					url : "${pageContext.request.contextPath}/api/guestbooks"		
 					,type : "post"
 					// ,contentType : "application/json"
 					,data : guestbookVO
 					
 					// 응답
 					,dataType : "json"
-					,success : function(guestbookVO){
+					,success : function(JsonResult){
 						/*성공시 처리해야될 코드 작성*/
+						console.log(JsonResult);
+						console.log(JsonResult.result);
+						console.log(JsonResult.apiData);
 						
-						// 화면 출력
-						render(guestbookVO, 'up');	
-						
-						// 입력폼 비우기
-						$('#txt-name').val('');
-						$('#txt-password').val('');
-						$('#text-content').val('');				 
+						if(JsonResult.result== 'success'){
+							// 화면 출력
+							render(JsonResult.apiData, 'up');
+							
+							// 입력폼 비우기
+							$('#txt-name').val('');
+							$('#txt-password').val('');
+							$('#text-content').val('');
+						}else{
+							console.log("저장 실패");
+						}
+				 
 					}
+					
 					,error : function(XHR, status, error) {
 						console.error(status + " : " + error);
 					}
@@ -205,28 +209,37 @@
 				// VO로 data묶기
 				let guestbookVO = {
 						password: pw
-						,no: no
 				}
 				
 				$.ajax({
 					// 요청
-					url : "${pageContext.request.contextPath}/api/guestbook/remove"		
-					,type : "post"
+					url : '${pageContext.request.contextPath}/api/guestbooks/'+no		
+					,type : 'delete'
 					// ,contentType : "application/json"
 					,data : guestbookVO
 					
 					// 응답
 					,dataType : "json"
-					,success : function(result){
+					,success : function(JsonResult){
 						/*성공시 처리해야될 코드 작성*/
+						console.log(JsonResult);
+						console.log(JsonResult.result);
 						
+						if(JsonResult.result== 'success'){
+							$('#t'+no).remove(); // 아이디 매칭
+							$('.modal-bg').removeClass('active');
+						}else{
+							$('.modal-bg').removeClass('active');	
+						}
+						
+						/*
 						if(result==1){
 							$('#t'+no).remove(); // 아이디 매칭
 						}
 
 						// 모달창 닫기
 						$('.modal-bg').removeClass('active');
-
+						*/
 					}
 					,error : function(XHR, status, error) {
 						console.error(status + " : " + error);
@@ -240,21 +253,29 @@
 		function fetchList(){
 			$.ajax({
 				// 요청
-				url : "${pageContext.request.contextPath}/api/guestbook/list"		
-				,type : "post"
+				url : "${pageContext.request.contextPath}/api/guestbooks"
+				// url : "https://raw.githubusercontent.com/clz2025-red/api/refs/heads/main/guestbook"
+				,type : "get"
 				// ,contentType : "application/json"
 				// ,data : {name: "홍길동"}
 
 				// 응답
 				,dataType : "json"
-				,success : function(guestbookList){
+				,success : function(JsonResult){
 					/*성공시 처리해야될 코드 작성*/
-											
-					// 화면출력
-					for(let i=0; i<guestbookList.length; i++){
-						render(guestbookList[i], 'down');	
+					console.log(JsonResult);
+					console.log(JsonResult.result);
+					console.log(JsonResult.apiData);
+								
+					if(JsonResult.result =='success'){
+						// 화면출력
+						for(let i=0; i<JsonResult.apiData.length; i++){
+							render(JsonResult.apiData[i], 'down');	
+						}						
+					}else{
+						console.log('알 수없는 오류');	
 					}
-					
+						
 				}
 				,error : function(XHR, status, error) {
 					console.error(status + " : " + error);

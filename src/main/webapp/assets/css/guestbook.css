@@ -1,104 +1,14 @@
 @charset "UTF-8";
 
-/**************************************************************************** 
- * guestbook.css
- * 
- * mysite에서 방명록 관련 페이지에서 사용하는 css 파일
- * 
- * 이 파일은 방명록 글쓰기 폼, 방명록 리스트, 삭제 폼 등
- * 방명록 관련 페이지의 스타일을 정의합니다.
- * 
- * 주의: 이 파일은 reset.css와 mysite.css 이후에 로드되어야 합니다.
- *****************************************************************************/
-
-
-/* 방명록 글쓰기폼+리스트 ********************************************************/
-/* 글쓰기폼 */
-#guestbook-addlist .form-box table {
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-#guestbook-addlist .form-box table tbody tr td,
-#guestbook-addlist .form-box table tbody tr th {
-    border: 1px solid #A6A6A6;
-    padding: 5px 5px 5px 5px;
-    text-align: left;
-}
-
-#guestbook-addlist .form-box table tbody tr td #txt-name,
-#guestbook-addlist .form-box table tbody tr td #txt-password {
-    width: 100%;
-    height: 30px;
-    padding: 3px;
-}
-
-#guestbook-addlist .form-box table tbody tr td #text-content {
-    width: 100%;
-    height: 160px;
-    padding: 3px;
-}
-
-/* 글쓰기폼 하단 버튼 박스 */
-#guestbook-addlist .form-box table tbody tr td.btn-box {
-    text-align: center;
-}
-
-
 /* 방명록 리스트 */
-#guestbook-addlist table {
+.guestbook-item {
     width: 100%;
     margin-bottom: 10px;
+    border-collapse: collapse;
 }
 
-#guestbook-addlist table tbody tr td {
-    padding: 5px 5px 5px 5px;
+.guestbook-item td {
+    padding: 8px;
     border: 1px solid #A6A6A6;
     text-align: left;
 }
-
-#guestbook-addlist table tbody tr td {
-    border: 1px solid #A6A6A6;
-    padding: 10px 10px 10px 10px;
-    text-align: left;
-}
-/* //방명록 리스트 */
-/* //방명록 글쓰기폼+리스트 *********************************************************/
-
-
-
-/* 삭제폼 *************************************************************************/
-#guestbook-removeform .form-box table {
-    width: 100%;
-} 
-
-#guestbook-removeform .form-box table tbody tr td,
-#guestbook-removeform .form-box table tbody tr th {
-    border: 1px solid #A6A6A6;
-    padding: 5px 5px 5px 5px;
-    text-align: left;
-    vertical-align: middle;
-}
-
-#guestbook-removeform .form-box table tbody tr td input[type="password"] {
-    width: 100%;
-    height: 30px;
-    padding: 3px 3px 3px 3px;
-    vertical-align: middle;
-}
-
-
-#guestbook-removeform .form-box table tbody tr td #btn-remove {
-	border: 1px solid #A6A6A6;
-	border-radius: 2px;
-	background-color: #E5E5E5;
-	padding: 5px 20px 5px 20px;
-	margin: 0px 0px 0px 0px;
-	font-size: 14px;
-}
-
-#guestbook-removeform .form-box table tbody tr td #btn-main {
-	width: 120px;
-}
-
-/* //삭제폼 *************************************************************************/

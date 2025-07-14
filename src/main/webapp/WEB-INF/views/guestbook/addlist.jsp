@@ -13,19 +13,16 @@
 
 
 	<body>
-		  <div class="wrap">
+	  <div class="wrap">
 		<!-- 헤더 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- /헤더 -->
 		
-            <div class="content2 clearfix">
-                <aside>
-                    <h2>방명록</h2>
-                    <ul>
-                        <li><a href="">일반방명록</a></li>
-                        <li><a href="">ajax방명록</a></li>
-                    </ul>
-                </aside>
+      <div class="content2 clearfix">
+            
+		<!-- aside 방명록 -->
+		<c:import url="/WEB-INF/views/include/asideGuestbook.jsp"></c:import>
+		<!-- aside 방명록 -->	
 
 				<main>
 					
@@ -89,13 +86,13 @@
 									<tr>
 										<td>${guestVO.no}</td>
 										<td>${guestVO.name}</td>
-										<td>${guestVO.content}</td>
+										<td>${guestVO.regDate}</td>
 										<td class="txt-center">
 											<a class="btn btn-gray btn-sm" href="${pageContext.request.contextPath}/guestbook/removeform?no=${guestVO.no}">삭제</a>
 										</td>
 									</tr>
 									<tr>
-										<td colspan=4>방명록 글입니다. 방명록 글입니다.</td>
+										<td colspan=4>${guestVO.content}</td>
 									</tr>
 								</tbody>
 							</table>

@@ -13,7 +13,7 @@
 
 
 	<body>
-		  <div class="wrap">
+	  <div class="wrap">
 		<!-- 헤더 -->
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- /헤더 -->
@@ -26,8 +26,8 @@
                     <li><a href="">방명록</a></li>
                 </ul>
             </nav>
-
-			<div class="content2 clearfix">
+            
+		<div class="content2 clearfix">
              	<aside>
                     <h2>방명록</h2>
                     <ul>
