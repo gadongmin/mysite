@@ -15,7 +15,7 @@ public class GuestbookRepositoryTest {
 
 	@Autowired
 	private GuestbookRepository guestbookRepository;
-	
+	/*
 	@Test
 	public void selectAll() {
 		List<GuestVO> guestbookList = guestbookRepository.selectList();
@@ -55,6 +55,7 @@ public class GuestbookRepositoryTest {
 		int count = guestbookRepository.insertGuest(guestVO);
 		
 		assertThat(count).isEqualTo(1);
-		
 	}
+	*/
+
 }

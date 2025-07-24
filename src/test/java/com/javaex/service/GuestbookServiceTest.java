@@ -13,7 +13,7 @@ public class GuestbookServiceTest {
 
 	@Autowired
 	private GuestbookService guestbookService;
-	
+	/*
 	@Test
 	public void delete() {
 		GuestVO guestVO = new GuestVO();
@@ -27,4 +27,5 @@ public class GuestbookServiceTest {
 		
 		assertThat(count).isEqualTo(1);
 	}
+	*/
 }

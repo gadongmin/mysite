@@ -25,7 +25,6 @@
 		<!-- aside 방명록 -->	
 
 				<main>
-					
 				    <div class="main-head clearfix">
                         <h3>일반방명록</h3>
                         <ol class="clearfix">
@@ -35,44 +34,34 @@
                         </ol>
                     </div>
 
-					<div id="guestbook-addlist">
-						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="get">
-							<table>
-								<colgroup>
-									<col style="width: 70px;">
-									<col style="width: 340px;">
-									<col style="width: 70px;">
-									<col style="width: 340px;">
-								</colgroup>
-								<tbody>
-									<tr>
-										<th>
-											<label for="txt-name">이름</label>
-										</td>
-										<td>
-											<input id="txt-name" type="text" name="name" value="">
-										</td>
-										<th>
-											<label for="txt-password">패스워드</label>
-										</th>
-										<td>
-											<input id="txt-password"type="password" name="password" value="">
-										</td>
-									</tr>
-									<tr>
-										<td colspan="4">
-											<textarea id="text-content" name="content"></textarea>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="4" class="btn-box">
-											<button class="btn btn-blue btn-lg" type="submit">등록</button>
-										</td>
-									</tr>
-								</tbody>
-								
-							</table>
-						</form>	
+				<div id="guestbook-addlist">
+					<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="get">
+						<table>
+							<colgroup>
+								<col style="width: 70px;">
+								<col style="width: 340px;">
+								<col style="width: 70px;">
+								<col style="width: 340px;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th><label for="txt-name">이름</label></th>
+									<td><input id="txt-name" type="text" name="name" value=""></td>
+									<th><label for="txt-password">패스워드</label></th>
+									<td><input id="txt-password" type="password" name="password" value=""></td>
+								</tr>
+								<tr>
+									<td colspan="4"><textarea id="text-content" name="content"></textarea></td>
+								</tr>
+								<tr>
+									<td colspan="4" class="btn-box">
+										<button class="btn btn-blue btn-lg" type="submit">등록</button>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</form>
 						
 						<c:forEach items="${requestScope.gList}" var="guestVO">
 							<table class="guestbook-item">

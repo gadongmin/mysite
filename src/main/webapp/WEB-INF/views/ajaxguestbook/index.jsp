@@ -46,6 +46,7 @@
 							</colgroup>
 							<tbody>
 								<tr>
+									<td>
 									<th><label for="txt-name">이름</label>
 									</td>
 									<td><input id="txt-name" type="text" name="name" value=""></td>

@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+/********************************************************************   
+ * gallery.css
+ * 
+ * mysite에서 갤러리 관련 페이지에서 사용하는 css 파일
+ * 
+ * 갤러리와 관련된 페이지의 스타일을 정의합니다.
+ * 그리고 파일업로드 학습을 위한 페이지를 정의합니다.
+ * 
+ * 주의: 이 파일은 reset.css와 mysite.css 이후에 로드되어야 합니다.
+ *********************************************************************/
+
+
+
+/****************************************************************/
+/* 첨부파일 연습 ***************************************************/
+/****************************************************************/
+#attach-form table {
+    border-collapse: collapse; 
+    border: 1px solid #A6A6A6;
+}
+
+#attach-form td {
+	padding: 10px 10px 10px 10px;
+	font-size: 14px;
+}
+
+#attach-result .result-box {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	
+}
+
+
+#attach-result .result-image {
+	width: 380px;
+	height: 380px;
+	border: 1px solid #000000;
+	padding: 10px;
+	margin-bottom: 20px;
+	
+}
+
+
+/* 갤러리 리스트 ********************************************************/
+/* 리스트(이미지카드) */
+
+#gallery-list .btn-box {
+    text-align: right;
+}
+
+
+#gallery-list ul {
+    padding: 10px 0px 10px 0px;
+}
+
+#gallery-list ul li {
+    float: left;
+}
+
+#gallery-list ul li .card {
+	width: 200px;
+	height: 220px;
+    padding: 5px 0px 5px 0px;
+	margin: 0px 1.5px 5px 1.5px;
+	border: 1px solid #A6A6A6;
+    text-align: center;
+}	
+
+#gallery-list ul li .card img {
+	width: 190px;
+	height: 190px;
+	cursor: Pointer;
+}
+
+#gallery-list ul li .card .writer {
+	font-size: 14px;
+	font-weight: bold;
+	text-align:left;
+	margin: 5px 5px 0px 5px;
+}
+
+
+
+/****************************************************************/
+/* 업로드 팝업   ************************************************/
+/****************************************************************/
+/* 회원가입 폼요소그룹(라벨+폼요소) */
+.form-group {
+	padding: 10px 5px 10px 5px;
+    text-align: left;
+}
+
+.form-group .form-text {
+    display: inline-block;  /* 인라인 요소 가로폭을 주려고 */
+    width: 80px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+#addModalContent {
+	width: 450px;
+	height: 30px;
+	font-size: 14px;
+}
+
+#file {
+	display: inline;
+}
+
+/****************************************************************/
+/* 이미지보기 팝업   ************************************************/
+/****************************************************************/
+
+#viewModelImg {
+	width: 500px;
+}
+
+#viewModelContent {
+	font-size: 14px;
+	font-weight: bold; 
+	margin: 10px 0px 0px 0px
+}
+
+/****************************************************************/
+/* 업로드 팝업   ************************************************/
+/****************************************************************/
+
+/****************************************************************/
+/* 모달(Modal) 공통 스타일   ****************************************/
+/****************************************************************/
+.modal-bg {
+	/* 평소에는 숨겨둠 */
+	display: none; 
+	
+	/* 화면 전체를 덮도록 설정 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5); /* 반투명 검은색 배경 */
+	
+	/* 다른 요소들보다 위에 오도록 z-index 설정 */
+	z-index: 1000;
+}
+
+.modal-bg.active {
+	/* active 클래스가 추가되면 보이도록 설정 */
+	display: block; 
+}
+
+.modal-content {
+	/* 모달 내용이 들어갈 흰색 박스 스타일 */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+	
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding: 20px 30px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+	
+	min-width: 400px; /* 최소 너비 */
+}
+
+.modal-content .btn-close {
+	float: right;
+    border: none;
+    background-color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-content .title {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #bfbfbf;
+}
