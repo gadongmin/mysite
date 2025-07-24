@@ -41,7 +41,7 @@
 
 				<div id="user-loginform">
 
-					<form class="form-box" action="http://localhost:8888/user/login" method="get">
+					<form class="form-box" action="${pageContext.request.contextPath}/user/login" method="get">
 						<div class="info-row">
 							<label class="info-title" for="txt-idcheck">아이디</label> <input id="txt-idcheck" type="text" name="id" value="">
 						</div>

@@ -45,7 +45,7 @@
 
 				<div id="user-joinform">
 
-					<form class="form-box" action="http://localhost:8888/user/join" method="get">
+					<form class="form-box" action="${pageContext.request.contextPath}/user/join" method="get">
 						<div class="info-row">
 							<label class="info-title" for="txt-idcheck">아이디</label> <input id="txt-idcheck" type="text" name="id" value="">
 							<button id="btnCheck" class="btn btn-gray btn-input" type="button">중복체크</button>
