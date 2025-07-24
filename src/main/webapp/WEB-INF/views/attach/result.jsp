@@ -41,7 +41,7 @@
 								<img src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
 							</div>
 							
-							<a class="btn btn-gray btn-md" href=""> 다시 업로드 하기 </a>
+							<a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/attach/upload"> 다시 업로드 하기 </a>
 							
 						</div>
 					</div>

@@ -30,7 +30,6 @@ public class AttachService {
 		String saveDir = "";
 		if(osName.contains("win")){ // 윈도우면
 			saveDir = "C:\\javaStudy\\upload\\";
-		
 		}else{ // 리눅스면
 			saveDir = "/data/upload/";	
 		}
